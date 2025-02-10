@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer
+  namespace: cicd
+  labels:
+    service: customer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: customer
+  template:
+    metadata:
+      labels:
+        service: customer
+    spec:
+      containers:
+        - name: customer
+          image: heaves/testcustomer:1.1
+          ports:
+            - containerPort: 9002
